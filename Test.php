@@ -18,8 +18,4 @@ if (is_single('524')) {
     }
 }
     else {
-        function example_change_person($data)
-        {
-            return $data;
-        }
 }

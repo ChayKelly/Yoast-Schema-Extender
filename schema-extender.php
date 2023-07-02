@@ -1,20 +1,23 @@
 <?php
 /**
  * Plugin Name: Yoast Schema Extender Simple Version 2
- * Plugin URI: https://hugoscott.com/
+ * Plugin URI: https://capsulemarketing.co.uk
  * Description: A very basic plugin to extend Yoast Schema.org data.
  * Version: 1.0
- * Author: Hugo Scott
- * Author URI: https://hugoscott.com/
+ * Author: Chay Kelly/Georgia Monk
+ * Author URI: https://capsulemarketing.co.uk
  **/
 add_filter( 'yoast_seo_development_mode', '__return_true' );
-add_filter( 'wpseo_schema_person', 'example_change_person' );
+add_filter( 'wpseo_schema_webpage', 'add_paywall' );
 
-function example_change_person( $data ) {
+function add_paywall( $data ) {
 // data
 
-    if (is_single('524')) {
-        $data['knowsAbout'] = "https://en.wikipedia.org/wiki/Balti_(food)";
+        $data['isAccessibleForFree'] = "False";
+        $data['hasPart'][] = array (
+            "@type" => "WebPageElement",
+              "isAccessibleForFree" => "False",
+              "cssSelector" => ".paywall"
+        );
         return $data;
-    }
 }
